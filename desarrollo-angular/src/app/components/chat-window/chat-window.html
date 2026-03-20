@@ -1,0 +1,13 @@
+<div class="messages">
+  @for (msg of messages; track msg) {
+    <div [class.mine]="msg.mine" [class.other]="!msg.mine">
+      <p>{{ msg.text }}</p>
+      <small>{{ msg.time | date:'shortTime' }}</small>
+    </div>
+  }
+</div>
+
+<div class="input">
+  <input [formControl]="messageControl" placeholder="Escribí un mensaje..." />
+  <button (click)="sendMessage()">Enviar</button>
+</div>

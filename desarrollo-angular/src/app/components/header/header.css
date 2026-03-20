@@ -1,10 +1,10 @@
 header {
-    background: linear-gradient(180deg, rgb(91, 5, 145) 0%, rgb(159, 49, 196) 35%, rgb(202, 70, 239) 100%);
+    background: linear-gradient(180deg, rgb(91, 5, 145) 0%, rgb(159, 49, 196) 35%, #ca46ef 100%);
     padding: 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: rgb(238, 227, 79);
 }
 
 header h1 {

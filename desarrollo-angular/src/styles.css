@@ -7,3 +7,17 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f4f4;
 }
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 30%;
+  border-right: 1px solid #ddd;
+}
+
+.chat {
+  width: 70%;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { UsersService } from '../../services/users.service';
+import { UsersService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-form',
