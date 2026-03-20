@@ -1,4 +1,9 @@
 <h3>{{ chat?.name }}</h3>
+@if (!chat) {
+  <div class="empty">
+    Seleccioná un chat para comenzar 💬
+  </div>
+}
 
 <div class="messages">
   @for (msg of chat?.messages; track msg) {

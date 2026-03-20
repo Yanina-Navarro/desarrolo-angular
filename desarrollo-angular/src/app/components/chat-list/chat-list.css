@@ -17,3 +17,18 @@
   overflow-y: auto;
   height: calc(100vh - 120px);
 }
+
+.sidebar-header button {
+  background: #0084ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.sidebar-header button:hover {
+  background: #006fd6;
+}

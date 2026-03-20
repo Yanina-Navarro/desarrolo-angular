@@ -24,10 +24,12 @@ export class ChatWindow {
     private chatService: ChatService
   ) { }
 
-  ngOnInit() {
-    this.chatId = Number(this.route.snapshot.paramMap.get('id'));
+ngOnInit() {
+  this.route.paramMap.subscribe(params => {
+    this.chatId = Number(params.get('id'));
     this.chat = this.chatService.getChatById(this.chatId);
-  }
+  });
+}
 
    sendMessage() {
     if (this.messageControl.invalid) return;

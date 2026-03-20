@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { CustomDatePipe } from '../../pipes/custom-date-pipe';
 
 @Component({
   selector: 'app-chat-item',
   standalone: true,
-  imports: [],
+  imports: [CustomDatePipe],
   templateUrl: './chat-item.html',
   styleUrl: './chat-item.css',
 })

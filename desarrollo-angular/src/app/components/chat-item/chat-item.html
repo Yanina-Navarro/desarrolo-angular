@@ -5,9 +5,10 @@
     <div class="name">{{ chat.name }}</div>
 
     @if (chat.online) {
-      <div class="status online">● Online</div>
+    <div class="status online">● Online</div>
     } @else {
-      <div class="status offline">● Offline</div>
+    <div class="status offline">
+      Últ. vez: {{ chat.lastSeen | customDate }}
+    </div>
     }
   </div>
-</div>

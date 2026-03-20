@@ -34,7 +34,17 @@ export class ChatService {
     );
   }
 
-  addChat(chat: any) {
-  this.chats.update(chats => [...chats, chat]);
-}
+  addChat(chat: Chat) {
+    this.chats.update(chats => [...chats, chat]);
+
+  }
+  updateLastSeen(chatId: number) {
+    this.chats.update(chats =>
+      chats.map(c =>
+        c.id === chatId
+          ? { ...c, lastSeen: new Date(), online: false }
+          : c
+      )
+    );
+  }
 }
