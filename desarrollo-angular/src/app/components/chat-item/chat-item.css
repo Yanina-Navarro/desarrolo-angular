@@ -12,8 +12,13 @@
 .avatar {
   width: 45px;
   height: 45px;
-  background: gray;
   border-radius: 50%;
+  background: #be53ef;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
 .info {
@@ -33,5 +38,5 @@
 }
 
 .offline {
-  color: gray;
+  color: rgb(239, 4, 4);
 }

@@ -1,5 +1,7 @@
-<div class="chat-item" (click)="openChat()">
-  <div class="avatar"></div>
+<div class="chat-item" [routerLink]="['/chats', chat.id]">
+  <div class="avatar">
+    {{ getInitial(chat.name) }}
+  </div>
 
   <div class="info">
     <div class="name">{{ chat.name }}</div>

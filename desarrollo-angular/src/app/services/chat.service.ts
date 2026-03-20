@@ -5,6 +5,14 @@ import { Message } from "../models/message.model";
 @Injectable({ providedIn: 'root' })
 export class ChatService {
 
+  constructor() {
+  const saved = localStorage.getItem('chats');
+
+  if (saved) {
+    this.chats.set(JSON.parse(saved));
+  }
+}
+
   chats = signal<Chat[]>([
     {
       id: 1,
@@ -24,27 +32,37 @@ export class ChatService {
     return this.chats().find(c => c.id === id);
   }
 
-  addMessage(chatId: number, message: Message) {
-    this.chats.update(chats =>
-      chats.map(c =>
-        c.id === chatId
-          ? { ...c, messages: [...c.messages, message] }
-          : c
-      )
-    );
-  }
+addMessage(chatId: number, message: Message) {
+  this.chats.update(chats =>
+    chats.map(c =>
+      c.id === chatId
+        ? { ...c, messages: [...c.messages, message] }
+        : c
+    )
+  );
 
-  addChat(chat: Chat) {
-    this.chats.update(chats => [...chats, chat]);
+  this.saveToLocalStorage(); 
+}
 
-  }
-  updateLastSeen(chatId: number) {
-    this.chats.update(chats =>
-      chats.map(c =>
-        c.id === chatId
-          ? { ...c, lastSeen: new Date(), online: false }
-          : c
-      )
-    );
-  }
+addChat(chat: Chat) {
+  this.chats.update(chats => [...chats, chat]);
+  this.saveToLocalStorage(); 
+}
+
+updateLastSeen(chatId: number) {
+  this.chats.update(chats =>
+    chats.map(c =>
+      c.id === chatId
+        ? { ...c, lastSeen: new Date(), online: false }
+        : c
+    )
+  );
+
+  this.saveToLocalStorage(); 
+}
+
+  saveToLocalStorage() {
+  localStorage.setItem('chats', JSON.stringify(this.chats()));
+}
+
 }

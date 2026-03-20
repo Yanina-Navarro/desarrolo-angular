@@ -11,12 +11,12 @@ body {
 
 .container {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 .sidebar {
   width: 30%;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #d1d0c2;
 }
 
 .chat {

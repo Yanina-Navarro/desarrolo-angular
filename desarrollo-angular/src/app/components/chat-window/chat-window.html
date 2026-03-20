@@ -1,16 +1,22 @@
-<h3>{{ chat?.name }}</h3>
-@if (!chat) {
-  <div class="empty">
-    Seleccioná un chat para comenzar 💬
+<h3>{{ chat()?.name }}</h3>
+@if (!chat()) {
+<div class="empty">
+  Seleccioná un chat para comenzar 💬
+</div>
+}
+
+@if (isTyping) {
+  <div class="typing">
+    Escribiendo...
   </div>
 }
 
 <div class="messages">
-  @for (msg of chat?.messages; track msg) {
-    <div [class.mine]="msg.mine" [class.other]="!msg.mine">
-      <p>{{ msg.text }}</p>
-      <small>{{ msg.time | date:'shortTime' }}</small>
-    </div>
+  @for (msg of chat()?.messages; track msg) {
+  <div [class.mine]="msg.mine" [class.other]="!msg.mine">
+    <p>{{ msg.text }}</p>
+    <small>{{ msg.time | date:'shortTime' }}</small>
+  </div>
   }
 </div>
 

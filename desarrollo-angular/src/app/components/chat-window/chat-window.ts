@@ -4,6 +4,7 @@ import { ChatService } from '../../services/chat.service';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Message } from '../../models/message.model';
+import { signal, computed } from '@angular/core';
 
 @Component({
   selector: 'app-chat-window',
@@ -15,23 +16,24 @@ import { Message } from '../../models/message.model';
 export class ChatWindow {
 
   messageControl = new FormControl('', Validators.required);
-
-  chatId!: number;
-  chat: any;
+  isTyping = false;
+  chatId = signal<number>(0);
+  chat = computed(() =>
+    this.chatService.getChatById(this.chatId())
+  );
 
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService
   ) { }
 
-ngOnInit() {
-  this.route.paramMap.subscribe(params => {
-    this.chatId = Number(params.get('id'));
-    this.chat = this.chatService.getChatById(this.chatId);
-  });
-}
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.chatId.set(Number(params.get('id')));
+    });
+  }
 
-   sendMessage() {
+  sendMessage() {
     if (this.messageControl.invalid) return;
 
     const text = this.messageControl.value as string;
@@ -42,11 +44,16 @@ ngOnInit() {
       time: new Date()
     };
 
-    this.chatService.addMessage(this.chatId, newMessage);
-
+    this.chatService.addMessage(this.chatId(), {
+      text,
+      mine: true,
+      time: new Date()
+    });
+    
     this.messageControl.reset();
 
-    // 🤖 respuesta automática
+    this.isTyping = true;
+
     setTimeout(() => {
       const response: Message = {
         text: 'Respuesta automática 🤖',
@@ -54,7 +61,9 @@ ngOnInit() {
         time: new Date()
       };
 
-      this.chatService.addMessage(this.chatId, response);
-    }, 1000);
+      this.chatService.addMessage(this.chatId(), response);
+      this.isTyping = false;
+
+    }, 1500);
   }
 }
