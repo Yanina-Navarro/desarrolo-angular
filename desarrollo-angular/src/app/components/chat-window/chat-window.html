@@ -1,5 +1,7 @@
+<h3>{{ chat?.name }}</h3>
+
 <div class="messages">
-  @for (msg of messages; track msg) {
+  @for (msg of chat?.messages; track msg) {
     <div [class.mine]="msg.mine" [class.other]="!msg.mine">
       <p>{{ msg.text }}</p>
       <small>{{ msg.time | date:'shortTime' }}</small>
@@ -7,7 +9,5 @@
   }
 </div>
 
-<div class="input">
-  <input [formControl]="messageControl" placeholder="Escribí un mensaje..." />
-  <button (click)="sendMessage()">Enviar</button>
-</div>
+<input [formControl]="messageControl" />
+<button (click)="sendMessage()">Enviar</button>

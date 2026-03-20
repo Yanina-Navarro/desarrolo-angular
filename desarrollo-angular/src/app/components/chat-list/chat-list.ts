@@ -1,9 +1,32 @@
 import { Component } from '@angular/core';
+import { ChatItem } from '../chat-item/chat-item';
+import { ChatService } from '../../services/chat.service';
+import { RouterModule } from '@angular/router';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-list',
-  imports: [],
+  standalone: true,
+  imports: [ChatItem, RouterModule, ReactiveFormsModule],
   templateUrl: './chat-list.html',
   styleUrl: './chat-list.css',
 })
-export class ChatList {}
+
+export class ChatList {
+
+  searchControl = new FormControl<string>('');
+
+  chats;
+
+  constructor(private chatService: ChatService) {
+    this.chats = this.chatService.chats;
+  }
+
+  filteredChats() {
+    const search = (this.searchControl.value ?? '').toLowerCase();
+
+    return this.chats().filter(chat =>
+      chat.name.toLowerCase().includes(search)
+    );
+  }
+}

@@ -1,5 +1,13 @@
-@if (chat.online) {
-  <span class="online">● Online</span>
-} @else {
-  <span class="offline">● Offline</span>
-}
+<div class="chat-item" (click)="openChat()">
+  <div class="avatar"></div>
+
+  <div class="info">
+    <div class="name">{{ chat.name }}</div>
+
+    @if (chat.online) {
+      <div class="status online">● Online</div>
+    } @else {
+      <div class="status offline">● Offline</div>
+    }
+  </div>
+</div>

@@ -21,3 +21,13 @@ body {
 .chat {
   width: 70%;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+  }
+
+  .chat {
+    display: none;
+  }
+}

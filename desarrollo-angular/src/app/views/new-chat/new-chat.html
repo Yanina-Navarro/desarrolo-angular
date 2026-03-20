@@ -1,1 +1,15 @@
-<p>new-chat works!</p>
+<h2>Nuevo Chat</h2>
+
+<form (ngSubmit)="createChat()">
+  <input
+    type="text"
+    placeholder="Nombre del contacto"
+    [formControl]="nameControl"
+  />
+
+  @if (nameControl.invalid && nameControl.touched) {
+    <small>El nombre es obligatorio</small>
+  }
+
+  <button type="submit">Crear</button>
+</form>

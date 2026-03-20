@@ -1,0 +1,19 @@
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background: #ededed;
+}
+
+.search {
+  width: 90%;
+  margin: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.chat-list {
+  overflow-y: auto;
+  height: calc(100vh - 120px);
+}
