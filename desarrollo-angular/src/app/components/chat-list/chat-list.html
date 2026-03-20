@@ -6,7 +6,7 @@
 <input type="text" placeholder="Buscar..." [formControl]="searchControl" class="search" />
 
 <div class="chat-list">
-  @for (chat of chats(); track chat.id) {
+  @for (chat of filteredChats(); track chat.id) {
   <app-chat-item [chat]="chat"></app-chat-item>
   }
 </div>

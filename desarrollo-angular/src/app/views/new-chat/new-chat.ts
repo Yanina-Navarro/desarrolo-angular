@@ -18,21 +18,19 @@ export class NewChat {
     private chatService: ChatService,
     private router: Router
   ) { }
-
   createChat() {
     if (this.nameControl.invalid) return;
 
     const newChat = {
-      id: Date.now(), // id simple
+      id: Date.now(),
       name: this.nameControl.value as string,
       online: true,
       messages: [],
       lastSeen: new Date()
-
     };
 
     this.chatService.addChat(newChat);
 
-  this.router.navigate(['/chats', newChat.id]);
+    this.router.navigate(['/chats', newChat.id]);
   }
 }

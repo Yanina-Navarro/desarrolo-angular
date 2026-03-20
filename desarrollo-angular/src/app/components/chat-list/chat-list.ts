@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { ChatItem } from '../chat-item/chat-item';
 import { ChatService } from '../../services/chat.service';
 import { RouterModule } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-chat-list',
@@ -15,18 +16,17 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 export class ChatList {
 
   searchControl = new FormControl<string>('');
+  search = toSignal(this.searchControl.valueChanges, { initialValue: '' });
 
-  chats;
+  chats = computed(() => this.chatService.chats());
 
-  constructor(private chatService: ChatService) {
-    this.chats = this.chatService.chats;
-  }
+  constructor(private chatService: ChatService) { }
 
-  filteredChats() {
-    const search = (this.searchControl.value ?? '').toLowerCase();
+  filteredChats = computed(() => {
+    const search = (this.search() ?? '').toLowerCase();
 
-    return this.chats().filter(chat =>
+    return this.chatService.chats().filter(chat =>
       chat.name.toLowerCase().includes(search)
     );
-  }
+  });
 }

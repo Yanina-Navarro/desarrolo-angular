@@ -11,5 +11,4 @@
     <small>El nombre es obligatorio</small>
   }
 
-  <button type="submit">Crear</button>
-</form>
+<button (click)="createChat()" [disabled]="nameControl.invalid">Crear</button></form>
