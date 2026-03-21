@@ -1,59 +1,89 @@
-# DesarrolloAngular
+## 💬 Angular ChatBot - Trabajo Final
+Este es el repositorio del proyecto final para el curso de Desarrollo con Angular. Se trata de una aplicación de mensajería dinámica que permite gestionar chats, enviar mensajes en tiempo real (simulado) y persistir la información localmente.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
+## 🚀 Descripción del Proyecto
+La aplicación permite a los usuarios interactuar con una lista de contactos, crear nuevos chats mediante formularios reactivos y mantener conversaciones. El estado de la aplicación se gestiona de forma reactiva, garantizando que la interfaz responda instantáneamente a los cambios del usuario.
 
-## Development server
+## ✨ Características Principales
+Gestión Dinámica de Chats: Creación de nuevos contactos mediante formularios reactivos de Angular.
 
-To start a local development server, run:
+Mensajería Instantánea: Envío de mensajes con actualización automática de la vista.
 
-```bash
+Filtro de Búsqueda: Buscador en tiempo real para filtrar la lista de chats.
+
+Persistencia Local: Uso de LocalStorage para que los chats y mensajes no se pierdan al recargar la página.
+
+Diseño Responsivo: Interfaz adaptada para una visualización fluida.
+
+## 🛠️ Tecnologías Utilizadas
+Angular 17/18: Framework principal.
+
+Signals: Para una gestión de estado reactiva y eficiente.
+
+Angular Router: Gestión de navegación entre la lista y las ventanas de chat.
+
+Reactive Forms: Validación y manejo de datos en la creación de chats.
+
+TypeScript: Lenguaje base para lógica robusta.
+
+CSS: Estilos personalizados con Flexbox para layouts dinámicos.
+
+## 📋 Estructura del Proyecto
+La arquitectura sigue las mejores prácticas de Angular, separando responsabilidades:
+
+src/app/models/: Definición de interfaces de TypeScript (Chat, Message).
+
+src/app/services/: ChatService, el corazón de la app que maneja las Signals y el LocalStorage.
+
+src/app/components/:
+
+chat-list: Sidebar con buscador y lista de contactos.
+
+chat-item: Componente visual para cada contacto en la lista.
+
+chat-window: Ventana principal donde ocurre la conversación.
+
+new-chat: Formulario reactivo para crear nuevos chats.
+
+src/app/pipes/: CustomDatePipe para formatear el tiempo transcurrido (ej: "Hace 5 min").
+
+## 💻 Instalación y Ejecución Local
+Sigue estos pasos para correr el proyecto en tu computadora:
+
+1. **Clonar el repositorio**
+
+Bash
+git clone https://github.com/Yanina-Navarro/desarrolo-angular.git
+
+2. **Ingresar a la carpeta del proyecto**
+
+Bash
+cd desarrolo-angular
+
+3. **Instalar las dependencias**
+
+Bash
+npm install
+4. **Iniciar el servidor de desarrollo:**
+
+Bash
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+5. **Abrir el navegador:**
+Ve a http://localhost:4200/ para ver la aplicación funcionando.
 
-## Code scaffolding
+## 🧪 Cómo Probar la Aplicación
+**Explorar Chats:** Selecciona a "Juan" o "Ana" en la lista lateral para ver sus mensajes.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**Enviar Mensajes:** Escribe en el campo de texto inferior y presiona Enter o el botón de enviar. Verás cómo aparece el globo verde (derecha) con la hora actual.
 
-```bash
-ng generate component component-name
-```
+**Crear un Chat:** Haz clic en el botón "+" arriba de la lista. Completa el nombre en el formulario y dale a "Crear". Serás redirigido automáticamente al nuevo chat.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+**Persistencia:** Recarga la página (F5) y verás que tus mensajes y nuevos chats siguen ahí gracias al LocalStorage.
 
-```bash
-ng generate --help
-```
+**Búsqueda:** Usa la barra de búsqueda para filtrar contactos por nombre.
 
-## Building
+## 💡 Consideraciones Adicionales
+**Estado de Conexión:** Los contactos muestran un indicador visual (verde/rojo) basado en su propiedad online.
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Manejo de Fechas:** Se implementó una lógica especial para transformar los datos guardados en LocalStorage (que son strings) de vuelta a objetos Date de JavaScript para que los Pipes funcionen correctamente.
