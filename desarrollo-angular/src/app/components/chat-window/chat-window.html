@@ -1,24 +1,44 @@
-<h3>{{ chat()?.name }}</h3>
-@if (!chat()) {
-<div class="empty">
-  Seleccioná un chat para comenzar 💬
-</div>
-}
+@if (chat()) {
+  <div class="chat-active-container">
+    <header class="chat-header">
+      <h3>{{ chat()?.name }}</h3>
+    </header>
 
-@if (isTyping) {
-  <div class="typing">
-    Escribiendo...
+    <div class="messages">
+      @for (msg of chat()?.messages; track msg) {
+        <div [class.mine]="msg.mine" [class.other]="!msg.mine">
+          <p>{{ msg.text }}</p>
+          <small>{{ msg.time | date:'shortTime' }}</small>
+        </div>
+      }
+    </div>
+
+    @if (isTyping) {
+      <div class="typing">
+        Escribiendo...
+      </div>
+    }
+
+    <div class="chat-footer">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          [formControl]="messageControl" 
+          placeholder="Escribe un mensaje..."
+          (keyup.enter)="sendMessage()" 
+        />
+        <button (click)="sendMessage()" [disabled]="messageControl.invalid">
+          <span class="send-icon">➤</span>
+        </button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="empty-state">
+    <div class="empty-content">
+      <span class="chat-icon">💬</span>
+      <h2>¡Bienvenido!</h2>
+      <p>Seleccioná un chat de la lista para comenzar a mensajear.</p>
+    </div>
   </div>
 }
-
-<div class="messages">
-  @for (msg of chat()?.messages; track msg) {
-  <div [class.mine]="msg.mine" [class.other]="!msg.mine">
-    <p>{{ msg.text }}</p>
-    <small>{{ msg.time | date:'shortTime' }}</small>
-  </div>
-  }
-</div>
-
-<input [formControl]="messageControl" />
-<button (click)="sendMessage()">Enviar</button>

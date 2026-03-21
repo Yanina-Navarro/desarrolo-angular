@@ -17,8 +17,7 @@ export class ChatService {
     }
     return [
       { id: 1, name: 'Juan', online: true, messages: [] },
-      { id: 2, name: 'Ana', online: false, messages: [] }
-    ];
+      { id: 2, name: 'Ana', online: false, messages: [], lastSeen: new Date(2026, 2, 15, 14, 30) }];
   }
 
   chats = signal<Chat[]>(this.getInitialChats());

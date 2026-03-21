@@ -6,9 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CustomDatePipe implements PipeTransform {
 
-  transform(value: Date | undefined): string {
+  transform(value: any): string {
     if (!value) return '';
 
+    const dateValue = value instanceof Date ? value : new Date(value);
+   if (isNaN(dateValue.getTime())) return '';
+   
     const now = new Date();
     const diff = (now.getTime() - value.getTime()) / 1000;
 

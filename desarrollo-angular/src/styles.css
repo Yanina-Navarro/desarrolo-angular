@@ -3,6 +3,13 @@
   padding: 0;
 }
 
+:host {
+  display: block;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,7 +18,8 @@ body {
 
 .container {
   display: flex;
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -34,4 +42,10 @@ body {
     height: 100%;
     background: white;
   }
+}
+
+.main-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }

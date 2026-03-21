@@ -1,14 +1,24 @@
-<h2>Nuevo Chat</h2>
+<div class="new-chat-container">
+  <div class="new-chat-card">
+    <header>
+      <button class="back-button" routerLink="/chats">←</button>
+      <h2>Nuevo Chat</h2>
+    </header>
 
-<form (ngSubmit)="createChat()">
-  <input
-    type="text"
-    placeholder="Nombre del contacto"
-    [formControl]="nameControl"
-  />
+    <form (ngSubmit)="createChat()" class="chat-form">
+      <div class="input-group">
+        <label for="name">¿Con quién quieres hablar?</label>
+        <input type="text" placeholder="Escribe el nombre del contacto..." [formControl]="nameControl"
+          [class.input-error]="nameControl.invalid && nameControl.touched" />
 
-  @if (nameControl.invalid && nameControl.touched) {
-    <small>El nombre es obligatorio</small>
-  }
+        @if (nameControl.invalid && nameControl.touched) {
+        <span class="error-message">El nombre es obligatorio</span>
+        }
+      </div>
 
-<button (click)="createChat()" [disabled]="nameControl.invalid">Crear</button></form>
+      <button (click)="createChat()" type="submit" class="submit-button" [disabled]="nameControl.invalid">
+        Comenzar Conversación
+      </button>
+    </form>
+  </div>
+</div>
