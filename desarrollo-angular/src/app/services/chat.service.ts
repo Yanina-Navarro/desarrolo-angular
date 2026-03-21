@@ -11,7 +11,7 @@ export class ChatService {
       const parsed = JSON.parse(saved);
       return parsed.map((c: any) => ({
         ...c,
-        lastSeen: c.lastSeen ? new Date(c.lastSeen) : undefined,
+        lastSeen: c.lastSeen ? new Date(c.lastSeen) : (c.id === 2 ? new Date(2026, 2, 15, 14, 30) : undefined),
         messages: c.messages || []
       }));
     }

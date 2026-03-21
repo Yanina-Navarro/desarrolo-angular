@@ -1,16 +1,22 @@
-<div class="chat-item" [routerLink]="['/chats', chat.id]">
-  <div class="avatar">
-    {{ getInitial(chat.name) }}
+<div class="chat-item" [routerLink]="['/chats', chat.id]" routerLinkActive="active">
+  <div class="avatar-container">
+    <div class="avatar">
+      {{ getInitial(chat.name) }}
+    </div>
+    <span class="status-indicator" [class.online]="chat.online" [class.offline]="!chat.online"></span>
   </div>
 
   <div class="info">
-    <div class="name">{{ chat.name }}</div>
+    <div class="name-row">
+      <div class="name">{{ chat.name }}</div>
+      </div>
 
     @if (chat.online) {
-    <div class="status online">● Online</div>
+      <div class="status-text online-text">Online</div>
     } @else {
-    <div class="status offline">
-      Últ. vez: {{ chat.lastSeen | customDate }}
-    </div>
+      <div class="status-text offline-text">
+        Últ. vez: {{ chat.lastSeen | customDate }}
+      </div>
     }
   </div>
+</div>
